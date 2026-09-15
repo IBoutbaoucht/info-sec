@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student Portal</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f2f4f8;
+            font-family: Arial, sans-serif;
+        }
+
+        .portal {
+            width: 350px;
+            padding: 35px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        h2 {
+            margin-bottom: 25px;
+            color: #666;
+            font-size: 18px;
+        }
+
+        input {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #4f46e5;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #4f46e5;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #3730a3;
+        }
+
+        #Message {
+            margin-top: 20px;
+            color: #16a34a;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="portal">
+        <h1>Student Portal</h1>
+        <h2>Welcome, Student </h2>
+
+        <input type="text" name="name" placeholder="Your name">
+        <input type="password" name="password" placeholder="Password">
+
+        <button type="button" onclick="login()" id="loginbutton">Login</button>
+
+        <p id="Message"></p>
+    </div>
+
+    <script>
+        function login() {
+            message = document.getElementById("Message");
+            message.textContent = "You are logged in!";
+        }
+    </script>
+
+</body>
+
+</html>
