@@ -1,13 +1,14 @@
-# Web Privacy & Stateful Tracking — Lab Repository
+# Web Privacy & Stateful Tracking — Lab Module
 
 **Author:** Imad BOUTBAOUCHT  
 **Course / Module:** Information Security — Web Privacy (TP1)  
+**Lab Folder:** `TP-Stateful_Web_Tracking`  
 **Report Document:** 📄 [`final_report.pdf`](final_report.pdf) | 📝 [`final_report.md`](final_report.md)
 
 ---
 
-## 📌 Project Overview
-This repository contains the complete practical implementation, experiments, security analysis, and documentation for the **Stateful Web Tracking & Web Privacy** lab.
+## 📌 Lab Overview
+This lab folder contains the complete practical implementation, experiments, security analysis, and documentation for the **Stateful Web Tracking & Web Privacy** lab.
 
 The lab investigates how web tracking works under the hood, comparing:
 1. **Third-Party Cookie Tracking (Challenge 1):** Tracking users across independent publisher websites using embedded `<iframe>` elements.
@@ -16,12 +17,12 @@ The lab investigates how web tracking works under the hood, comparing:
 
 ---
 
-## 📁 Repository Directory Structure
+## 📁 Lab Directory Structure
 
 ```text
 TP-Stateful_Web_Tracking/
-├── README.md                      # Main GitHub documentation & project overview
-├── final_report.pdf               # Complete standalone PDF Lab Report (17 pages)
+├── README.md                      # Lab documentation & setup guide
+├── final_report.pdf               # Complete standalone PDF Lab Report
 ├── final_report.md                # Markdown source of the lab report
 ├── TP_Privacy.pdf                 # Lab assignment specification PDF
 ├── .gitignore                     # Git ignore file for venv & temporary files
