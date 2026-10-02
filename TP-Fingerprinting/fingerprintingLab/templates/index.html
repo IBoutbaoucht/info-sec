@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Privacy TP — Browser Fingerprinting</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-badges">
+                <span class="badge">Web Privacy TP</span>
+                <span class="badge badge-accent">Mission: Find Alice without cookies</span>
+            </div>
+            <h1>Browser Fingerprinting Laboratory</h1>
+            <p class="subtitle">Passive, Active, and Behavioural Browser Identification</p>
+        </header>
+
+        <!-- Part 1: Passive Feature Collection -->
+        <section class="card">
+            <div class="card-header">
+                <h2>1. Passive HTTP Fingerprinting (Server-Side)</h2>
+                <span class="tag">Zero JavaScript Required</span>
+            </div>
+            <p class="section-desc">
+                When a browser requests a page, it automatically sends network metadata and HTTP headers. 
+                The server inspects these without executing any JavaScript on the client device.
+            </p>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Feature Name</th>
+                            <th>HTTP Header / Origin</th>
+                            <th>Observed Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Client IP Address</td>
+                            <td><code>request.remote_addr</code></td>
+                            <td><span class="val-pill">{{ passive_data.ip }}</span></td>
+                        </tr>
+                        <tr>
+                            <td>HTTP Method</td>
+                            <td><code>request.method</code></td>
+                            <td><span class="val-pill">{{ passive_data.method }}</span></td>
+                        </tr>
+                        <tr>
+                            <td>User-Agent</td>
+                            <td><code>User-Agent</code></td>
+                            <td><code>{{ passive_data.userAgent }}</code></td>
+                        </tr>
+                        <tr>
+                            <td>Accept-Language</td>
+                            <td><code>Accept-Language</code></td>
+                            <td><span class="val-pill">{{ passive_data.acceptLanguage }}</span></td>
+                        </tr>
+                        <tr>
+                            <td>Accepted MIME Types</td>
+                            <td><code>Accept</code></td>
+                            <td><code>{{ passive_data.accept }}</code></td>
+                        </tr>
+                        <tr>
+                            <td>Compression Formats</td>
+                            <td><code>Accept-Encoding</code></td>
+                            <td><span class="val-pill">{{ passive_data.acceptEncoding }}</span></td>
+                        </tr>
+                        <tr>
+                            <td>Client Hints (Brands)</td>
+                            <td><code>Sec-CH-UA</code></td>
+                            <td><code>{{ passive_data.secChUa }}</code></td>
+                        </tr>
+                        <tr>
+                            <td>Client Hints (Platform)</td>
+                            <td><code>Sec-CH-UA-Platform</code></td>
+                            <td><span class="val-pill">{{ passive_data.secChUaPlatform }}</span></td>
+                        </tr>
+                        <tr>
+                            <td>Client Hints (Mobile)</td>
+                            <td><code>Sec-CH-UA-Mobile</code></td>
+                            <td><span class="val-pill">{{ passive_data.secChUaMobile }}</span></td>
+                        </tr>
+                        <tr>
+                            <td>Upgrade Insecure Requests</td>
+                            <td><code>Upgrade-Insecure-Requests</code></td>
+                            <td><span class="val-pill">{{ passive_data.upgradeInsecureRequests }}</span></td>
+                        </tr>
+                        <tr>
+                            <td>Do Not Track (DNT)</td>
+                            <td><code>DNT</code></td>
+                            <td><span class="val-pill">{{ passive_data.dnt }}</span></td>
+                        </tr>
+                        <tr>
+                            <td>Global Privacy Control</td>
+                            <td><code>Sec-GPC</code></td>
+                            <td><span class="val-pill">{{ passive_data.secGpc }}</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Part 2: Active Feature Collection -->
+        <section class="card">
+            <div class="card-header">
+                <h2>2. Active Feature Collection (Client-Side)</h2>
+                <span class="tag tag-js">JavaScript APIs</span>
+            </div>
+            <p class="section-desc">
+                JavaScript queries internal browser objects (<code>navigator</code>, <code>screen</code>, 
+                <code>window</code>, <code>Intl</code>) to reveal environmental details not present in standard HTTP headers.
+            </p>
+
+            <!-- Required element from Section 2.2 of handout -->
+            <div class="highlight-box">
+                <h3>Handout Step 2.2 Output:</h3>
+                <p id="feature-output">Waiting for JavaScript...</p>
+            </div>
+
+            <div class="sub-block">
+                <h3>Expanded Active Browser Properties (Task 2):</h3>
+                <ul id="active-features-list" class="feature-bullets">
+                    <li>Reading browser objects...</li>
+                </ul>
+                <div class="server-status-box">
+                    <span id="active-send-status" class="status-badge">Awaiting transmission to server...</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 3: The Typing Imposter -->
+        <section class="card">
+            <div class="card-header">
+                <h2>3. Behavioural Biometrics: The Typing Imposter</h2>
+                <span class="tag tag-bio">Keystroke Dynamics</span>
+            </div>
+            <p class="section-desc">
+                Alice disabled cookies and spoofed headers, but can her natural typing cadence be recognized? 
+                Type the sentence below exactly as shown. Timing begins on the first keystroke and ends when the sentence matches.
+            </p>
+
+            <!-- Task 3 Required Elements -->
+            <div class="target-sentence-container">
+                <span class="label">Target Sentence to Reproduce:</span>
+                <p id="target-sentence" class="target-sentence">Cookies are gone, but Alice's rhythm still leaves traces!</p>
+            </div>
+
+            <div class="typing-input-group">
+                <label for="typing-input">Type here:</label>
+                <textarea id="typing-input" rows="2" placeholder="Start typing the sentence here..." autocomplete="off" autocapitalize="off" spellcheck="false"></textarea>
+            </div>
+
+            <div class="action-row">
+                <button id="restart-btn" type="button" class="btn btn-secondary">Restart Experiment</button>
+                <span id="typing-status" class="status-badge ready">Ready. Start typing above.</span>
+            </div>
+
+            <!-- Task 3 Result Display Area (Initially Empty/Hidden) -->
+            <div id="typing-results" class="results-panel" style="display: none;">
+                <h3>Alice's Typing Behaviour Results:</h3>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <span class="metric-label">Total Typing Time</span>
+                        <span id="total-time" class="metric-val">--</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-label">Typing Speed</span>
+                        <span id="typing-speed" class="metric-val">--</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-label">Backspace Corrections</span>
+                        <span id="corrections-count" class="metric-val">--</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 4: Combined SHA-256 Fingerprint Identifier -->
+        <section class="card">
+            <div class="card-header">
+                <h2>4. Fingerprint Identifier: SHA-256 Hash Digest</h2>
+                <span class="tag tag-hash">Web Crypto API</span>
+            </div>
+            <p class="section-desc">
+                Multiple environmental clues are normalized, concatenated into a canonical string, 
+                and hashed with SHA-256 (via <code>crypto.subtle.digest</code>) into a single compact identifier.
+            </p>
+
+            <div class="hash-box">
+                <div class="hash-row">
+                    <span class="label">Canonical Feature String:</span>
+                    <pre><code id="canonical-string">Computing...</code></pre>
+                </div>
+                <div class="hash-row">
+                    <span class="label">SHA-256 Fingerprint Identifier:</span>
+                    <div class="hash-value-wrapper">
+                        <code id="fingerprint-hash" class="hash-code">Computing hash...</code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hash-actions">
+                <button id="verify-stability-btn" class="btn btn-primary" type="button">Test Hash Stability (Recompute)</button>
+                <button id="send-hash-btn" class="btn btn-secondary" type="button">Send Hash to Server (/collect?fp=...)</button>
+                <span id="hash-status" class="status-badge">Ready</span>
+            </div>
+
+            <div id="stability-log" class="stability-log"></div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Web Privacy TP &mdash; Browser Fingerprinting Laboratory</p>
+            <p>Author: <strong>Imad BOUTBAOUCHT</strong></p>
+        </footer>
+    </div>
+
+    <!-- Active and Behavioral Scripts -->
+    <script src="{{ url_for('static', filename='fingerprint.js') }}"></script>
+    <script src="{{ url_for('static', filename='fingerprint2.js') }}"></script>
+</body>
+</html>
