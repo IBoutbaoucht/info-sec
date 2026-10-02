@@ -1,5 +1,0 @@
-[   20857ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ http://lab.local/portal.html:0
-[   21276ms] TypeError: Cannot set properties of undefined (setting 'left')
-    at catchMe (http://lab.local/game.html:54:34)
-    at HTMLButtonElement.onclick (http://lab.local/game.html:35:50)
-[   40441ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ http://lab.local/portal.html:0
