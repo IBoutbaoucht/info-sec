@@ -5,7 +5,7 @@
 ## Contents
 
 - `TP_fp.pdf` — the lab handout.
-- `Imad BOUTBAOUCHT.pdf` — the full lab report (screenshots, explanations, results).
+- `final_report.pdf` — the full lab report (screenshots, explanations, results).
 - `fingerprintingLab/` — the solution project (Flask).
 
 ## Project structure
